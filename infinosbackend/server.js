@@ -15,7 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connection to MongoDB
-mongoose.connect('mongodb+srv://praneeth365:iamPraneeth@2003@cluster0.6nvfb.mongodb.net/' + DB_NAME, { useNewUrlParser: true });
+
+
+// Connection to MongoDB
+mongoose.connect('mongodb+srv://sanjay_infinos:Sanjay999@cluster0.trn1uwi.mongodb.net/' + DB_NAME, { useNewUrlParser: true });
 const connection = mongoose.connection;
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully !");

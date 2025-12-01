@@ -37,7 +37,7 @@ function Devices(){
     }
 
     useEffect(() => {
-        axios.get("http://localhost:4000/device/").then(res =>{
+        axios.get("/device/").then(res =>{
             console.log(res.data,"hello")
             setDevices(res.data) ;
         })
@@ -50,8 +50,8 @@ function Devices(){
             device_id:Devices[index]._id ,
             status:!val
         } ;
-        axios.post("http://localhost:4000/device/update_device",request).then(res=>{
-            axios.get("http://localhost:4000/device/").then(res =>{
+        axios.post("/device/update_device",request).then(res=>{
+            axios.get("/device/").then(res =>{
                 setDevices(res.data) ;
             })                
         })
@@ -73,8 +73,8 @@ function Devices(){
                     safety_high_temp:100,
                     bag_temp:25
                 }
-                axios.post("http://localhost:4000/device/add_device",newDevice).then(res=>{
-                    axios.get("http://localhost:4000/device/").then(resp =>{
+                axios.post("/device/add_device",newDevice).then(res=>{
+                    axios.get("/device/").then(resp =>{
                         setDevices(resp.data) ;
                     }).catch(err=>{
                         console.log(err) ;
@@ -91,7 +91,7 @@ function Devices(){
         var coolerId = Devices[index]["cooling"]
         var batteryId = Devices[index]["battery"]
         const doc = new jsPDF()
-        axios.get("http://localhost:4000/device/get_heaters",{params:{heater_ids:heaterId}}).then(res=>{
+        axios.get("/device/get_heaters",{params:{heater_ids:heaterId}}).then(res=>{
             var n = res.data.length ;
             console.log(heaterId,"hello") ;
             console.log(res,"hello")
@@ -140,7 +140,7 @@ function Devices(){
                 body: jsonDataHumidity
             })  
 
-            axios.get("http://localhost:4000/device/get_coolers",{params:{cooler_ids:coolerId}}).then(res=>{
+            axios.get("/device/get_coolers",{params:{cooler_ids:coolerId}}).then(res=>{
                 var n = res.data.length ;
                 console.log(coolerId,"hello") ;
                 console.log(res,"hello")
@@ -189,7 +189,7 @@ function Devices(){
                     body: jsonDataHumidity
                 })
                 
-                axios.get("http://localhost:4000/device/get_batteries",{params:{battery_ids:batteryId}}).then(res=>{
+                axios.get("/device/get_batteries",{params:{battery_ids:batteryId}}).then(res=>{
                     var n = res.data.length ;
                     var jsonData = [] ;
                     for(var i=0;i<n;i++){
